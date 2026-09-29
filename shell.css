@@ -1,0 +1,26 @@
+:root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { color: #352d26; background: #f6f1e8; }
+a { color: inherit; }
+.skip-link { position: absolute; top: -100px; left: 16px; z-index: 5; padding: 10px 16px; background: #2d543d; color: white; border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+.comparison-shell { min-height: 100dvh; display: flex; flex-direction: column; }
+.toolbar { padding: 20px clamp(16px, 3vw, 44px) 14px; background: #fffdf8; box-shadow: 0 2px 14px #352d2612; z-index: 1; }
+.toolbar-heading { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.eyebrow { width: 100%; margin: 0; color: #7d5b3d; font-size: 11px; font-weight: 800; letter-spacing: .13em; }
+h1 { margin: 0; font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -.04em; }
+.intro { margin: 0; color: #74685e; font-size: 13px; }
+.switchers { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 28px; margin-top: 18px; }
+.switcher { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.switcher-label { font-size: 12px; font-weight: 800; color: #715e4e; }
+.switcher-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.switcher-options a { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 13px; border: 1px solid #dbd0c2; border-radius: 9px; background: #fff; color: #54483e; font-size: 13px; font-weight: 700; line-height: 1.2; text-decoration: none; transition: background .15s, border-color .15s; }
+.switcher-options a:hover { background: #f0eadf; border-color: #9c8c78; }
+.switcher-options a:focus-visible { outline: 3px solid #ae7443; outline-offset: 2px; }
+.switcher-options a[aria-current="page"] { background: #2d543d; border-color: #2d543d; color: #fff; }
+.preview-label { margin: 13px 0 0; font-size: 12px; color: #786b60; }
+.preview-wrap { flex: 1; min-height: 500px; display: flex; }
+.preview-wrap iframe { display: block; width: 100%; min-height: 500px; flex: 1; border: 0; background: #f6f1e8; }
+@media (min-width: 760px) { .comparison-shell { height: 100dvh; } .preview-wrap { min-height: 0; } .preview-wrap iframe { min-height: 0; } }
+@media (max-width: 620px) { .toolbar { padding: 16px 12px 12px; } .intro { width: 100%; } .switchers { gap: 13px; } .switcher { width: 100%; } .experiment-options a { flex: 1 1 calc(50% - 6px); } .version-options a { flex: 1; } .preview-wrap { min-height: 75dvh; } .preview-wrap iframe { min-height: 75dvh; } }
