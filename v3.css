@@ -1,0 +1,83 @@
+.edit-context {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border: 2px solid #b9d0c4;
+  border-radius: 14px;
+  background: #edf6f1;
+  color: var(--text);
+}
+
+.edit-context strong {
+  flex: 0 0 auto;
+  color: var(--accent-dark);
+}
+
+.edit-context span {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .screen-column {
+    grid-row: 1;
+  }
+
+  .order-summary {
+    grid-row: 2;
+  }
+
+  .start-visual {
+    min-height: 210px;
+  }
+
+  .start-cup {
+    transform: scale(0.52);
+  }
+
+  .counter-sign {
+    top: 20px;
+  }
+
+  .start-copy {
+    padding: clamp(30px, 5vw, 46px);
+  }
+}
+
+@media (max-width: 680px) {
+  .progress-wrap {
+    overflow: visible;
+  }
+
+  .progress-list {
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .progress-list li {
+    min-width: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 3px 1px;
+    text-align: center;
+  }
+
+  .progress-list li:not(:last-child)::after {
+    display: none;
+  }
+
+  .step-label {
+    font-size: 0.74rem;
+    line-height: 1.25;
+    word-break: keep-all;
+  }
+
+  .edit-context {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
