@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f1e8">
+  <title>카페 주문 연습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">주문 연습으로 바로 가기</a>
+
+  <header class="site-header" id="siteHeader" hidden>
+    <div class="brand" aria-label="카페 주문 연습">
+      <span class="brand-mark" aria-hidden="true">C</span>
+      <span>카페 주문 연습</span>
+    </div>
+    <button class="text-button" id="restartHeaderButton" type="button">처음부터</button>
+  </header>
+
+  <main id="mainContent">
+    <section class="screen start-screen is-active" id="startScreen" data-screen="start" aria-labelledby="startTitle">
+      <div class="start-card">
+        <div class="start-visual" aria-hidden="true">
+          <div class="counter-sign">CAFE</div>
+          <div class="start-cup"><span></span></div>
+        </div>
+        <div class="start-copy">
+          <p class="eyebrow">혼자 해 보는 생활 연습</p>
+          <h1 id="startTitle">카페에서 음료를 주문해 봐요</h1>
+          <p class="lead">음료를 고르고, 어떻게 마실지 정한 뒤 주문까지 해 볼 수 있어요.</p>
+          <ol class="start-steps" aria-label="연습 순서">
+            <li><span>1</span> 음료 고르기</li>
+            <li><span>2</span> 옵션 고르기</li>
+            <li><span>3</span> 주문 확인하기</li>
+          </ol>
+          <button class="primary-button large-button" id="startButton" type="button">주문 연습 시작하기</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="order-shell" id="orderShell" hidden>
+      <nav class="progress-wrap" aria-label="주문 진행 단계">
+        <ol class="progress-list" id="progressList">
+          <li data-step="menu"><span class="step-number">1</span><span class="step-label">음료</span></li>
+          <li data-step="options"><span class="step-number">2</span><span class="step-label">옵션</span></li>
+          <li data-step="service"><span class="step-number">3</span><span class="step-label">받는 방법</span></li>
+          <li data-step="review"><span class="step-number">4</span><span class="step-label">확인</span></li>
+        </ol>
+      </nav>
+
+      <div class="order-layout">
+        <div class="screen-column">
+          <section class="screen" id="menuScreen" data-screen="menu" aria-labelledby="menuTitle">
+            <div class="screen-heading">
+              <p class="step-kicker">1단계 · 음료</p>
+              <h1 id="menuTitle">어떤 음료를 마실까요?</h1>
+              <p>마시고 싶은 음료 하나를 눌러 주세요.</p>
+            </div>
+
+            <div class="menu-grid" id="menuGrid" role="group" aria-label="음료 선택"></div>
+
+            <p class="selection-note" id="menuSelectionNote" aria-live="polite">아직 음료를 고르지 않았어요.</p>
+
+            <div class="action-bar">
+              <button class="secondary-button" id="menuBackButton" type="button">시작 화면</button>
+              <button class="primary-button" id="menuNextButton" type="button" disabled>다음: 옵션 고르기</button>
+            </div>
+          </section>
+
+          <section class="screen" id="optionsScreen" data-screen="options" aria-labelledby="optionsTitle">
+            <div class="screen-heading">
+              <p class="step-kicker">2단계 · 옵션</p>
+              <h1 id="optionsTitle">어떻게 마실까요?</h1>
+              <p>온도와 컵 크기를 골라 주세요.</p>
+            </div>
+
+            <div class="choice-section">
+              <div class="section-title-row">
+                <h2>온도</h2>
+                <span class="required-badge">하나 선택</span>
+              </div>
+              <div class="choice-grid two-column" id="temperatureChoices" role="group" aria-label="온도 선택"></div>
+              <p class="choice-help" id="temperatureHelp" aria-live="polite"></p>
+            </div>
+
+            <div class="choice-section">
+              <div class="section-title-row">
+                <h2>컵 크기</h2>
+                <span class="required-badge">하나 선택</span>
+              </div>
+              <div class="choice-grid two-column" id="sizeChoices" role="group" aria-label="컵 크기 선택"></div>
+            </div>
+
+            <div class="action-bar">
+              <button class="secondary-button" id="optionsBackButton" type="button">이전: 음료</button>
+              <button class="primary-button" id="optionsNextButton" type="button" disabled>다음: 받는 방법</button>
+            </div>
+          </section>
+
+          <section class="screen" id="serviceScreen" data-screen="service" aria-labelledby="serviceTitle">
+            <div class="screen-heading">
+              <p class="step-kicker">3단계 · 받는 방법</p>
+              <h1 id="serviceTitle">어디서 마실까요?</h1>
+              <p>카페에서 마실지, 가지고 갈지 골라 주세요.</p>
+            </div>
+
+            <div class="choice-grid two-column service-grid" id="serviceChoices" role="group" aria-label="받는 방법 선택"></div>
+
+            <div class="quantity-card">
+              <div>
+                <h2>몇 잔 주문할까요?</h2>
+                <p>한 번에 1잔부터 3잔까지 연습할 수 있어요.</p>
+              </div>
+              <div class="quantity-control" aria-label="수량 선택">
+                <button type="button" id="quantityMinus" aria-label="수량 한 잔 줄이기">−</button>
+                <output id="quantityValue" aria-live="polite">1잔</output>
+                <button type="button" id="quantityPlus" aria-label="수량 한 잔 늘리기">+</button>
+              </div>
+            </div>
+
+            <div class="action-bar">
+              <button class="secondary-button" id="serviceBackButton" type="button">이전: 옵션</button>
+              <button class="primary-button" id="serviceNextButton" type="button" disabled>다음: 주문 확인</button>
+            </div>
+          </section>
+
+          <section class="screen" id="reviewScreen" data-screen="review" aria-labelledby="reviewTitle">
+            <div class="screen-heading">
+              <p class="step-kicker">4단계 · 확인</p>
+              <h1 id="reviewTitle">이대로 주문할까요?</h1>
+              <p>고른 내용을 보고 맞는지 확인해 주세요.</p>
+            </div>
+
+            <div class="review-card" id="reviewCard"></div>
+
+            <div class="practice-phrase" aria-labelledby="phraseTitle">
+              <span class="speech-icon" aria-hidden="true">“</span>
+              <div>
+                <p class="mini-label" id="phraseTitle">직원에게 이렇게 말해 볼 수 있어요</p>
+                <p id="practicePhrase"></p>
+              </div>
+            </div>
+
+            <div class="edit-actions" aria-label="주문 내용 수정">
+              <button class="edit-button" id="editDrinkButton" type="button">음료 바꾸기</button>
+              <button class="edit-button" id="editOptionsButton" type="button">옵션 바꾸기</button>
+              <button class="edit-button" id="editServiceButton" type="button">받는 방법 바꾸기</button>
+            </div>
+
+            <div class="action-bar review-actions">
+              <button class="secondary-button" id="reviewBackButton" type="button">이전: 받는 방법</button>
+              <button class="primary-button order-button" id="placeOrderButton" type="button">직원에게 주문하기</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="order-summary" id="orderSummary" aria-labelledby="summaryTitle">
+          <div class="summary-sticky">
+            <p class="mini-label">지금까지 고른 내용</p>
+            <h2 id="summaryTitle">내 주문</h2>
+            <div id="summaryContent"></div>
+            <p class="summary-total" id="summaryTotal"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen complete-screen" id="completeScreen" data-screen="complete" aria-labelledby="completeTitle">
+      <div class="complete-card">
+        <div class="complete-mark" aria-hidden="true">✓</div>
+        <p class="eyebrow">주문 완료</p>
+        <h1 id="completeTitle">주문을 잘 마쳤어요</h1>
+        <p class="complete-message" id="completeMessage"></p>
+        <div class="receipt" id="receipt"></div>
+        <div class="next-tip">
+          <strong>실제 카페에서는</strong>
+          <span>직원의 안내에 따라 결제하고, 음료가 나올 때까지 기다리면 돼요.</span>
+        </div>
+        <button class="primary-button large-button" id="practiceAgainButton" type="button">한 번 더 연습하기</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
